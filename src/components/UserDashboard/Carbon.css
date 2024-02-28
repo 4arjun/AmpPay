@@ -1,32 +1,45 @@
 /* CarbonFootprint.css */
 .carbon-footprint-container {
-  height:280px;
-  width:280px;
-  border-radius: 250px;
-  display: flex;
-  flex-direction: column;
-
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    
-  margin-left: 20px;
-    margin-top: 40px;
-    
-    background-color: #D0F5FF; /* Green color */
-    box-shadow: 15px 15px 20px rgba(0, 255, 0, 0.5); /* Green shadow */
-    padding-top: 20px;
+    max-width: 300px;
+    margin-top: 0px;
+    height: 250px;
   }
   
-
-  .foot-print{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -40px;
+  .carbon-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
   }
-  #foot-print-p{
-    margin-left: auto;
-    margin-right: auto;
+  
+  .carbon-icon {
+    font-size: 40px;
+    margin-right: 10px; 
   }
-  .carbon-footprint-container span{
-    color:orangered;
+  
+  .carbon-text {
+    font-size: 18px;
+  }
+  
+  .carbon-value {
+    font-size: 24px;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .carbon-icon {
+    font-size: 40px;
+    margin-right: 10px;
+    background: linear-gradient(to right, green, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .high-consumption {
+    color: red;
   }
