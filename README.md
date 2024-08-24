@@ -112,8 +112,4 @@ This project is licensed under the MIT License. For more details, please refer t
 
 ## Contact Information
 
-For inquiries or support, please contact:
-
-Stefan Binoj
-Email: stefan.binoj.007@gmail.com
-Project Repository: [https://github.com/stefanbinoj/AmpPay](https://github.com/stefanbinoj/AmpPay)
+For inquiries or support, please contact:arjunajith440@gmail.com
