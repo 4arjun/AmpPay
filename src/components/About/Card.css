@@ -1,45 +1,80 @@
-/* CardContainer.css */
-
 .card-container {
   background-color: #000000;
   cursor: default;
-    padding-top: 100px;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    gap: 100px;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  gap: 50px;
+  position: relative;
+  padding-bottom: 50px;
+}
 
+.card {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  width: 350px;
+  height: 500px;
+  padding: 2em;
+  color: #000000;
+  background: linear-gradient(#4a90e2, #4169e1);
+  text-align: justify;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.card p {
+  font-size: 18px;
+  color: #000000;
+  line-height: 1.6;
+}
+
+.layers {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+  .card-container {
+    padding: 100px 20px;
   }
-  
-  .card {
-    
-    font-family: 'Roboto', sans-serif; /* Add a specific font-family */
-    position: relative;
-    width: 350px; /* Adjusted width for better balance */
-    height: 500px; /* Adjusted height for better balance */
-    padding: 2em; /* Reduced padding for better content-to-card ratio */
-    color: #000000;
-    background: linear-gradient(#4a90e2, #4169e1);
-    text-align: justify; /* Align text to justify for cleaner appearance */
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease;
-    border-radius: 10px;
-    display: flex;
+}
+
+@media (max-width: 768px) {
+  .card-container {
     flex-direction: column;
-    justify-content: space-between;
-    margin: 0 10px;
-    background: rgba(206, 164, 164, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(26, 37, 196, 0.37);
+    padding-top: 30px;
+    align-items: center;
+    height: auto;
+  }
 
+  .card {
+    width: 90%;
+    height: auto;
+    padding: 1.2em;
+    margin: 0 auto;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   }
-  
+
   .card h3 {
-    font-size: 30px;
-    margin-bottom: 10px; /* Add some space below the heading */
+    font-size: 24px;
   }
-  
+
   .card p {
-    font-size: 20px;
-    color: #000000;
-    line-height: 1.4; /* Adjust line-height for better readability */;
+    font-size: 15px;
   }
+}
