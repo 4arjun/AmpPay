@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "chart.js/auto";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
+import logo from "../images/amppay.png";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -16,22 +18,38 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
 
 const Dashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState("dashboard");
 
+  // Expanded data for dashboard
   const rmsCurrent = "220V";
   const rmsPower = "1500W";
   const peakPower = "2000W";
+  const averageDailyConsumption = "11.5 kWh";
   const unitsConsumed = "350 kWh";
   const todaysReport =
     "Energy consumption is within the expected range. No anomalies detected.";
+  const weeklyEnergyUsage = "140 kWh";
+  const monthlyEnergyUsage = "600 kWh";
+  const environmentalImpact = "Carbon emissions reduced by 5% from last month";
   const predictedBill = "$120.00";
+  const billingHistory = [
+    { month: "January", amount: "$100" },
+    { month: "February", amount: "$115" },
+    { month: "March", amount: "$110" },
+  ];
+  const notifications = [
+    "System check completed at 10 AM",
+    "Energy consumption is lower than usual today.",
+    "New report available for House C.",
+  ];
 
   const leaderboardData = [
     { house: "House A", consumption: "300 kWh" },
@@ -53,6 +71,21 @@ const Dashboard = () => {
     ],
   };
 
+  const barGraphData = {
+    labels: ["House A", "House B", "House C"],
+    datasets: [
+      {
+        label: "Monthly Energy Consumption",
+        data: [300, 350, 400],
+        backgroundColor: [
+          "rgba(75, 192, 192, 0.6)",
+          "rgba(192, 75, 75, 0.6)",
+          "rgba(75, 192, 75, 0.6)",
+        ],
+      },
+    ],
+  };
+
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -65,7 +98,9 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
-        <div className="logo">Logo</div>
+        <div className="logo">
+          <img src={logo} alt="amppay" />
+        </div>
         <nav>
           <ul>
             <li
@@ -113,112 +148,198 @@ const Dashboard = () => {
             <div className="dashboard-sections">
               <div className="dashboard-section rms-display">
                 <h2>RMS Current & Power</h2>
-                <p>
-                  <strong>Current:</strong> {rmsCurrent}
-                </p>
-                <p>
-                  <strong>Power:</strong> {rmsPower}
-                </p>
+                <div className="rms-stats">
+                  <div className="rms-stat">
+                    <p>
+                      <strong>Current:</strong>
+                    </p>
+                    <span>{rmsCurrent}</span>
+                  </div>
+                  <div className="rms-stat">
+                    <p>
+                      <strong>Power:</strong>
+                    </p>
+                    <span>{rmsPower}</span>
+                  </div>
+                  <div className="rms-stat">
+                    <p>
+                      <strong>Average Daily Consumption:</strong>
+                    </p>
+                    <span>{averageDailyConsumption}</span>
+                  </div>
+                </div>
               </div>
 
               <div className="dashboard-section peak-power">
                 <h2>Peak Power</h2>
-                <p>{peakPower}</p>
+                <div className="peak-power-stat">
+                  <p>
+                    <strong>Peak Power:</strong>
+                  </p>
+                  <span>{peakPower}</span>
+                </div>
               </div>
 
-              <div className="dashboard-section units-consumed">
-                <h2>Units Consumed</h2>
-                <p>{unitsConsumed}</p>
+              <div className="dashboard-section consumption-details">
+                <h2>Consumption Details</h2>
+                <div className="consumption-stat">
+                  <p>
+                    <strong>Units Consumed:</strong>
+                  </p>
+                  <span>{unitsConsumed}</span>
+                </div>
+                <div className="consumption-stat">
+                  <p>
+                    <strong>Weekly Energy Usage:</strong>
+                  </p>
+                  <span>{weeklyEnergyUsage}</span>
+                </div>
+                <div className="consumption-stat">
+                  <p>
+                    <strong>Monthly Energy Usage:</strong>
+                  </p>
+                  <span>{monthlyEnergyUsage}</span>
+                </div>
+              </div>
+
+              <div className="dashboard-section environmental-impact">
+                <h2>Environmental Impact</h2>
+                <div className="impact-details">
+                  <p>{environmentalImpact}</p>
+                </div>
               </div>
 
               <div className="dashboard-section todays-report">
                 <h2>Today's Report</h2>
-                <p>{todaysReport}</p>
+                <div className="report-content">
+                  <p>{todaysReport}</p>
+                </div>
+              </div>
+
+              <div className="dashboard-section billing-history">
+                <h2>Billing History</h2>
+                <div className="billing-list">
+                  <ul>
+                    {billingHistory.map((bill, index) => (
+                      <li key={index}>
+                        <span className="billing-month">{bill.month}:</span>
+                        <span className="billing-amount">{bill.amount}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               <div className="dashboard-section leaderboard">
                 <h2>Leaderboard</h2>
-                <ul>
-                  {leaderboardData.map((item, index) => (
-                    <li key={index}>
-                      <span>{item.house}</span> -{" "}
-                      <span>{item.consumption}</span>
-                    </li>
-                  ))}
-                </ul>
+                <table className="leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>House</th>
+                      <th>Consumption</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {leaderboardData.map((item, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{item.house}</td>
+                        <td>{item.consumption}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
 
               <div className="dashboard-section graph">
                 <h2>Energy Consumption Over Time</h2>
-                <Line data={graphData} />
+                <div className="chart-container">
+                  <Line data={graphData} />
+                </div>
+              </div>
+
+              <div className="dashboard-section bar-graph">
+                <h2>Monthly Energy Consumption per House</h2>
+                <div className="chart-container">
+                  <Bar data={barGraphData} />
+                </div>
               </div>
 
               <div className="dashboard-section predicted-bill">
                 <h2>Predicted Bill</h2>
-                <p>{predictedBill}</p>
+                <div className="bill-content">
+                  <p>
+                    Your estimated bill for this month is{" "}
+                    <strong>{predictedBill}</strong>. This estimate is based on
+                    your energy consumption trends over the past month.
+                  </p>
+                  <p>
+                    Keep an eye on your consumption to stay within your budget
+                    and avoid extra charges.
+                  </p>
+                </div>
+              </div>
+
+              <div className="dashboard-section notifications">
+                <h2>Notifications</h2>
+                <div className="notifications-content">
+                  <ul>
+                    {notifications.map((notification, index) => (
+                      <li key={index} className="notification-item">
+                        {notification}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </>
         )}
 
         {activeSection === "report" && (
-          <div className="report-content">
+          <div className="report-section">
             <h1>Report Issue</h1>
-            <form>
-              <label htmlFor="issue">Issue Description:</label>
-              <textarea id="issue" rows="4"></textarea>
-              <label htmlFor="severity">Severity:</label>
-              <select id="severity">
-                <option value="minor">Minor</option>
-                <option value="major">Major</option>
-                <option value="critical">Critical</option>
+            <p>
+              Fill out the form to report any issues related to your energy
+              usage or system.
+            </p>
+            <form className="report-form">
+              <label htmlFor="issue-type">Issue Type:</label>
+              <select id="issue-type" name="issue-type">
+                <option value="low-energy">Low Energy Output</option>
+                <option value="high-bill">Unexpected High Bill</option>
+                <option value="system">System Malfunction</option>
               </select>
+              <label htmlFor="details">Details:</label>
+              <textarea id="details" name="details" rows="4" />
               <button type="submit">Submit</button>
             </form>
           </div>
         )}
 
         {activeSection === "notifications" && (
-          <div className="notifications-content">
+          <div>
             <h1>Notifications</h1>
             <ul>
-              <li>Notification 1</li>
-              <li>Notification 2</li>
-              <li>Notification 3</li>
+              {notifications.map((notification, index) => (
+                <li key={index}>{notification}</li>
+              ))}
             </ul>
           </div>
         )}
 
         {activeSection === "profile" && (
-          <div className="profile-content">
+          <div>
             <h1>Profile</h1>
-            <p>
-              <strong>Name:</strong> John Doe
-            </p>
-            <p>
-              <strong>Email:</strong> johndoe@example.com
-            </p>
-            <p>
-              <strong>Phone:</strong> +1 234 567 890
-            </p>
-            <button>Edit Profile</button>
+            <p>View and edit your profile information here.</p>
           </div>
         )}
 
         {activeSection === "settings" && (
-          <div className="settings-content">
+          <div>
             <h1>Settings</h1>
-            <form>
-              <label htmlFor="notifications">Notifications:</label>
-              <select id="notifications">
-                <option value="all">All</option>
-                <option value="important">Important</option>
-                <option value="none">None</option>
-              </select>
-              <label htmlFor="darkMode">Dark Mode:</label>
-              <input type="checkbox" id="darkMode" />
-              <button type="submit">Save Settings</button>
-            </form>
+            <p>Modify your dashboard settings here.</p>
           </div>
         )}
       </div>

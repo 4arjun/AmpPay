@@ -2,6 +2,7 @@ import "./NavBar.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import img5 from "../../images/WhatsApp Image 2024-02-28 at 2.42.59 PM.jpeg";
+import logo from "../../images/amppay.png";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,13 @@ const NavBar = () => {
   return (
     <div className={`navbar ${visible ? "active" : "hidden"}`}>
       <div className="logo">
-        <h2>logo</h2>
+        <img
+          style={{
+            filter: "grayscale(100%) brightness(0%) hue-rotate(90deg)",
+          }}
+          src={logo}
+          alt="amppay"
+        />
       </div>
       <div className={`nav-links ${isOpen ? "open" : ""}`}>
         <a
