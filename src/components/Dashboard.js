@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "chart.js/auto";
 import { Line, Bar } from "react-chartjs-2";
 import logo from "../images/amppay.png";
+import baseUrl from "../urls";
+import axios from 'axios';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,17 +30,19 @@ ChartJS.register(
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [latestUsage, setLatestUsage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Expanded data for dashboard
-  const rmsCurrent = "220V";
-  const rmsPower = "1500W";
-  const peakPower = "2000W";
-  const averageDailyConsumption = "11.5 kWh";
-  const unitsConsumed = "350 kWh";
+  const rmsCurrent = latestUsage.irms_current + "V";
+  const rmsPower = latestUsage.irms_power + "W";
+  const peakPower = latestUsage.peak_power + "W";
+  const averageDailyConsumption = latestUsage.averageDailyConsumption + "kWh";
+  const unitsConsumed = latestUsage.usage_value + "kWh";
   const todaysReport =
     "Energy consumption is within the expected range. No anomalies detected.";
-  const weeklyEnergyUsage = "140 kWh";
-  const monthlyEnergyUsage = "600 kWh";
+  const weeklyEnergyUsage = latestUsage.weeklyEnergyUsage + "kWh";
+  const monthlyEnergyUsage = latestUsage.monthlyEnergyUsage + "kWh";
   const environmentalImpact = "Carbon emissions reduced by 5% from last month";
   const predictedBill = "$120.00";
   const billingHistory = [
@@ -95,6 +100,62 @@ const Dashboard = () => {
     setIsSidebarOpen(false);
   };
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/api/energyusage/?user=Arjun`);
+        
+        const data = response.data;
+  
+        const latest = data.reduce((latest, current) => {
+          if (!latest || current.datetime > latest.datetime) {
+            return current;
+          }
+          return latest;
+        }, null);
+  
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        const pastWeekUsage = data.filter(item => new Date(item.datetime) >= oneWeekAgo);
+        const weeklyEnergyUsage = pastWeekUsage.reduce((total, entry) => {
+          return total + parseFloat(entry.usage_value);
+        }, 0).toFixed(2);
+  
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
+        const pastMonthUsage = data.filter(item => new Date(item.datetime) >= oneMonthAgo);
+        const monthlyEnergyUsage = pastMonthUsage.reduce((total, entry) => {
+          return total + parseFloat(entry.usage_value);
+        }, 0).toFixed(2);
+  
+        const averageDaily = (weeklyEnergyUsage / 7).toFixed(2);
+  
+        setLatestUsage({
+          usage_value: parseFloat(latest.usage_value).toFixed(2) || 0,
+          irms_current: parseFloat(latest.irms_current).toFixed(2) || 0,
+          irms_power: parseFloat(latest.irms_power).toFixed(2) || 0,
+          peak_power: parseFloat(latest.peak_power).toFixed(2) || 0,
+          averageDailyConsumption: averageDaily,
+          weeklyEnergyUsage: weeklyEnergyUsage,
+          monthlyEnergyUsage: monthlyEnergyUsage,
+        });
+  
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  
+    const interval = setInterval(fetchData, 1000);
+  
+    return () => clearInterval(interval);
+  }, []);
+  
+  
   return (
     <div className="dashboard-container">
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
