@@ -34,15 +34,15 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const rmsCurrent = latestUsage.irms_current + "V";
-  const rmsPower = latestUsage.irms_power + "W";
-  const peakPower = latestUsage.peak_power + "W";
-  const averageDailyConsumption = latestUsage.averageDailyConsumption + "kWh";
-  const unitsConsumed = latestUsage.usage_value + "kWh";
+  const rmsCurrent = latestUsage.irms_current;
+  const rmsPower = latestUsage.irms_power;
+  const peakPower = latestUsage.peak_power;
+  const averageDailyConsumption = latestUsage.averageDailyConsumption;
+  const unitsConsumed = latestUsage.usage_value;
   const todaysReport =
     "Energy consumption is within the expected range. No anomalies detected.";
-  const weeklyEnergyUsage = latestUsage.weeklyEnergyUsage + "kWh";
-  const monthlyEnergyUsage = latestUsage.monthlyEnergyUsage + "kWh";
+  const weeklyEnergyUsage = latestUsage.weeklyEnergyUsage;
+  const monthlyEnergyUsage = latestUsage.monthlyEnergyUsage;
   const environmentalImpact = "Carbon emissions reduced by 5% from last month";
   const predictedBill = "$120.00";
   const billingHistory = [
@@ -132,13 +132,13 @@ const Dashboard = () => {
         const averageDaily = (weeklyEnergyUsage / 7).toFixed(2);
   
         setLatestUsage({
-          usage_value: parseFloat(latest.usage_value).toFixed(2) || 0,
-          irms_current: parseFloat(latest.irms_current).toFixed(2) || 0,
-          irms_power: parseFloat(latest.irms_power).toFixed(2) || 0,
-          peak_power: parseFloat(latest.peak_power).toFixed(2) || 0,
-          averageDailyConsumption: averageDaily,
-          weeklyEnergyUsage: weeklyEnergyUsage,
-          monthlyEnergyUsage: monthlyEnergyUsage,
+          usage_value: parseFloat(latest.usage_value).toFixed(2) || 0 + " kWh",
+          irms_current: parseFloat(latest.irms_current).toFixed(2) || 0 + " V",
+          irms_power: parseFloat(latest.irms_power).toFixed(2) || 0 + " W",
+          peak_power: parseFloat(latest.peak_power).toFixed(2) || 0 + " W",
+          averageDailyConsumption: averageDaily + " kWh",
+          weeklyEnergyUsage: weeklyEnergyUsage + " kWh",
+          monthlyEnergyUsage: monthlyEnergyUsage + " kWh",
         });
   
       } catch (error) {

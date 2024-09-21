@@ -8,10 +8,10 @@ const Footer = () => {
         <div className="footer-left">
           <h2>Contact Us</h2>
           <p>
-            Email: <a href="mailto:contact@amppay.com">contact@amppay.com</a>
+            Email: <a href="mailto:support@amppay.com">support@amppay.com</a>
           </p>
           <p>
-            Phone: <a href="tel:+1234567890">+1 234 567 890</a>
+            Phone: <a href="tel:+91 9074966721">+91 9074966721</a>
           </p>
           <p>Address: 123 Energy Lane, Green City, GA 30301</p>
 
