@@ -400,8 +400,8 @@ h1 {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 370px) {
   .dashboard-section {
-    max-width: 290px;
+    max-width: 265px;
   }
 }
