@@ -3,7 +3,7 @@ import "chart.js/auto";
 import { Line, Bar } from "react-chartjs-2";
 import logo from "../images/amppay.png";
 import baseUrl from "../urls";
-import axios from 'axios';
+import axios from "axios";
 
 import {
   Chart as ChartJS,
@@ -97,40 +97,53 @@ const Dashboard = () => {
 
   const handleMenuClick = (section) => {
     setActiveSection(section);
-    setIsSidebarOpen(false);
-  };
 
+    // Check if the window width is less than 480px
+    if (window.innerWidth < 480) {
+      setIsSidebarOpen(false); // Close the sidebar only on smaller screens
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/energyusage/?user=Arjun`);
-        
+        const response = await axios.get(
+          `${baseUrl}/api/energyusage/?user=Arjun`
+        );
+
         const data = response.data;
-  
+
         const latest = data.reduce((latest, current) => {
           if (!latest || current.datetime > latest.datetime) {
             return current;
           }
           return latest;
         }, null);
-  
+
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-        const pastWeekUsage = data.filter(item => new Date(item.datetime) >= oneWeekAgo);
-        const weeklyEnergyUsage = pastWeekUsage.reduce((total, entry) => {
-          return total + parseFloat(entry.usage_value);
-        }, 0).toFixed(2);
-  
+        const pastWeekUsage = data.filter(
+          (item) => new Date(item.datetime) >= oneWeekAgo
+        );
+        const weeklyEnergyUsage = pastWeekUsage
+          .reduce((total, entry) => {
+            return total + parseFloat(entry.usage_value);
+          }, 0)
+          .toFixed(2);
+
         const oneMonthAgo = new Date();
         oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
-        const pastMonthUsage = data.filter(item => new Date(item.datetime) >= oneMonthAgo);
-        const monthlyEnergyUsage = pastMonthUsage.reduce((total, entry) => {
-          return total + parseFloat(entry.usage_value);
-        }, 0).toFixed(2);
-  
+        const pastMonthUsage = data.filter(
+          (item) => new Date(item.datetime) >= oneMonthAgo
+        );
+        const monthlyEnergyUsage = pastMonthUsage
+          .reduce((total, entry) => {
+            return total + parseFloat(entry.usage_value);
+          }, 0)
+          .toFixed(2);
+
         const averageDaily = (weeklyEnergyUsage / 7).toFixed(2);
-  
+
         setLatestUsage({
           usage_value: parseFloat(latest.usage_value).toFixed(2) || 0 + " kWh",
           irms_current: parseFloat(latest.irms_current).toFixed(2) || 0 + " V",
@@ -140,22 +153,20 @@ const Dashboard = () => {
           weeklyEnergyUsage: weeklyEnergyUsage + " kWh",
           monthlyEnergyUsage: monthlyEnergyUsage + " kWh",
         });
-  
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchData();
-  
+
     const interval = setInterval(fetchData, 1000);
-  
+
     return () => clearInterval(interval);
   }, []);
-  
-  
+
   return (
     <div className="dashboard-container">
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
@@ -198,8 +209,12 @@ const Dashboard = () => {
         </nav>
       </div>
 
-      <div className="content">
-        <button className="sidebar-toggle" onClick={toggleSidebar}>
+      <div className={`content ${!isSidebarOpen ? "full-width" : ""}`}>
+        <button
+          style={{ zIndex: "9999" }}
+          className="sidebar-toggle"
+          onClick={toggleSidebar}
+        >
           ☰
         </button>
 
