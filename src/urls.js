@@ -1,2 +1,2 @@
-const baseUrl = "https://amppaybackend.vercel.app";
+const baseUrl = "https://amppay-backend.onrender.com";
 export default baseUrl;
