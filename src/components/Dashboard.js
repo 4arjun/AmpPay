@@ -4,6 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 import logo from "../images/amppay.png";
 import baseUrl from "../urls";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   Chart as ChartJS,
@@ -28,6 +29,8 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState("dashboard");
   const [latestUsage, setLatestUsage] = useState(0);
@@ -99,7 +102,7 @@ const Dashboard = () => {
     setActiveSection(section);
 
     if (window.innerWidth < 480) {
-      setIsSidebarOpen(false); 
+      setIsSidebarOpen(false);
     }
   };
 
@@ -170,7 +173,7 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
         <div className="logo">
-          <img src={logo} alt="amppay" />
+          <img onClick={() => navigate("/")} src={logo} alt="amppay" />{" "}
         </div>
         <nav>
           <ul>
@@ -222,7 +225,7 @@ const Dashboard = () => {
             <h1>Energy Insights Dashboard</h1>
             <div className="dashboard-sections">
               <div className="dashboard-section rms-display">
-                <h2 style={{color:"black"}}>RMS Current & Power</h2>
+                <h2 style={{ color: "black" }}>RMS Current & Power</h2>
                 <div className="rms-stats">
                   <div className="rms-stat">
                     <p>
@@ -256,7 +259,7 @@ const Dashboard = () => {
               </div>
 
               <div className="dashboard-section consumption-details">
-                <h2 style={{color:"black"}}>Consumption Details</h2>
+                <h2 style={{ color: "black" }}>Consumption Details</h2>
                 <div className="consumption-stat">
                   <p>
                     <strong>Units Consumed:</strong>
@@ -335,14 +338,16 @@ const Dashboard = () => {
               </div>
 
               <div className="dashboard-section bar-graph">
-                <h2 style={{color:"black"}}>Monthly Energy Consumption per House</h2>
+                <h2 style={{ color: "black" }}>
+                  Monthly Energy Consumption per House
+                </h2>
                 <div className="chart-container">
                   <Bar data={barGraphData} />
                 </div>
               </div>
 
               <div className="dashboard-section predicted-bill">
-                <h2 style={{color:"black"}}>Predicted Bill</h2>
+                <h2 style={{ color: "black" }}>Predicted Bill</h2>
                 <div className="bill-content">
                   <p>
                     Your estimated bill for this month is{" "}
@@ -357,7 +362,7 @@ const Dashboard = () => {
               </div>
 
               <div className="dashboard-section notifications">
-                <h2 style={{color:"black"}}>Notifications</h2>
+                <h2 style={{ color: "black" }}>Notifications</h2>
                 <div className="notifications-content">
                   <ul>
                     {notifications.map((notification, index) => (
