@@ -33,6 +33,10 @@
   background-color: #212529;
 }
 
+.sidebar .logo:hover {
+ cursor: pointer;
+}
+
 .sidebar nav ul {
   list-style: none;
   padding: 0;
