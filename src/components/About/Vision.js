@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 const Vision = () => {
   const [visibleHeader, setVisibleHeader] = useState(false);
+  const [fadeInIntro, setFadeInIntro] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -10,8 +11,10 @@ const Vision = () => {
       (entries) => {
         if (entries[0].isIntersecting) {
           setVisibleHeader(true);
+          setFadeInIntro(true);
         } else {
           setVisibleHeader(false);
+          setFadeInIntro(false);
         }
       },
       { threshold: 0 }
@@ -21,6 +24,7 @@ const Vision = () => {
       observer.disconnect();
     };
   }, []);
+
   return (
     <div id="vision" className="vision-container" ref={sectionRef}>
       <div className="vision-inner">
@@ -41,7 +45,7 @@ const Vision = () => {
           </p>
         </header>
         <div className="vision-bottom">
-          <div className="vision-intro">
+          <div className={`vision-intro ${fadeInIntro ? "fade-in" : ""}`}>
             <p>
               Welcome to AmpPay – your gateway to empowered energy management.
               Founded by a team passionate about sustainability, AmpPay offers a
@@ -56,9 +60,12 @@ const Vision = () => {
               never before.
             </p>
           </div>
-          <hr></hr>
+          <hr />
           <div className="vision-img">
-            <img src="https://adamsyy.github.io/tedx-2022/metamorphosis-removebg.png" />
+            <img
+              src="https://adamsyy.github.io/tedx-2022/metamorphosis-removebg.png"
+              alt="Vision Image"
+            />
           </div>
         </div>
       </div>
