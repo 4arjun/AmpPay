@@ -2,7 +2,7 @@
   display: flex;
   min-height: 100vh;
   font-family: "Arial", sans-serif;
-  background-color: #f4f4f9;
+  background: linear-gradient(135deg, #097bed, #314252);
 }
 
 .sidebar-toggle {
@@ -10,7 +10,7 @@
 }
 .sidebar {
   width: 250px;
-  background-color: #343a40;
+  background-color: #003366; 
   color: white;
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
@@ -21,6 +21,8 @@
   padding-top: 60px;
 }
 
+
+
 .sidebar.active {
   transform: translateX(0);
 }
@@ -30,11 +32,10 @@
   font-weight: bold;
   padding: 20px;
   text-align: center;
-  background-color: #212529;
 }
 
 .sidebar .logo:hover {
- cursor: pointer;
+  cursor: pointer;
 }
 
 .sidebar nav ul {
@@ -52,7 +53,7 @@
 
 .sidebar nav ul li:hover,
 .sidebar nav ul li.active {
-  background-color: #495057;
+  background-color: #004080;
 }
 
 .sidebar nav ul li.active {
@@ -85,7 +86,7 @@ h1 {
 }
 
 .dashboard-section {
-  background-color: white;
+  background: linear-gradient(135deg, #f3f4f6, #d1d5db);
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

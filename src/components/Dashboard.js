@@ -5,6 +5,8 @@ import logo from "../images/amppay.png";
 import baseUrl from "../urls";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {Alert} from '@mui/material';
+
 
 import {
   Chart as ChartJS,
@@ -170,7 +172,9 @@ const Dashboard = () => {
   }, []);
 
   return (
+    
     <div className="dashboard-container">
+      
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
         <div className="logo">
           <img onClick={() => navigate("/")} src={logo} alt="amppay" />{" "}
@@ -222,7 +226,7 @@ const Dashboard = () => {
 
         {activeSection === "dashboard" && (
           <>
-            <h1>Energy Insights Dashboard</h1>
+            {/* <h1>Energy Insights Dashboard</h1> */}
             <div className="dashboard-sections">
               <div className="dashboard-section rms-display">
                 <h2 style={{ color: "black" }}>RMS Current & Power</h2>
@@ -360,7 +364,7 @@ const Dashboard = () => {
                   </p>
                 </div>
               </div>
-
+              {/* 
               <div className="dashboard-section notifications">
                 <h2 style={{ color: "black" }}>Notifications</h2>
                 <div className="notifications-content">
@@ -372,7 +376,7 @@ const Dashboard = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </>
         )}

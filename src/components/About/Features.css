@@ -62,14 +62,19 @@
   color: #f0f0f0;
   line-height: 1.6;
 }
+@media (max-width: 1225px) {
+  .feature {
+    height: 230px;
+  }
+}
 
 @media (max-width: 1024px) {
   .features-list {
-    gap: 40px;
+    gap: 20px;
   }
 
   .feature {
-    width: 45%;
+    width: 33%;
   }
 
   .features-container h2 {
