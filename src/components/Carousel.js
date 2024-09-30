@@ -20,7 +20,7 @@ const Carousel1 = () => {
 
       <div className="carousel-content">
         <h1 className="carousel-title">Welcome to AmpPay</h1>
-        <p className="carousel-text">
+        <p style={{padding:'2px'}} className="carousel-text">
           Explore our services and find out how we can help you succeed.
         </p>
         <div className="carousel-buttons">
