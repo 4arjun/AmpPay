@@ -20,7 +20,6 @@ const Footer = () => {
             </a>
           </p>
 
-          <p>Address: 123 Energy Lane, Green City, GA 30301</p>
 
           <h2>Follow Us</h2>
           <div className="social-media">
