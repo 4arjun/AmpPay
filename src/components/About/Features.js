@@ -1,6 +1,13 @@
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Features.css";
 
 const Features = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 }); // You can adjust the duration as needed
+  }, []);
+
   const featuresData = [
     {
       icon: "🚀",
@@ -47,7 +54,11 @@ const Features = () => {
       <h2>Key Features</h2>
       <div className="features-list">
         {featuresData.map((feature, index) => (
-          <div key={index} className="feature">
+          <div
+            key={index}
+            className="feature"
+            data-aos="fade-up"
+          >
             <div
               className="feature-icon"
               dangerouslySetInnerHTML={{ __html: feature.icon }}

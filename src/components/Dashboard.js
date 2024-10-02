@@ -103,7 +103,7 @@ const Dashboard = () => {
   const handleMenuClick = (section) => {
     setActiveSection(section);
 
-    if (window.innerWidth < 480) {
+    if (window.innerWidth < 577) {
       setIsSidebarOpen(false);
     }
   };

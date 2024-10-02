@@ -386,6 +386,9 @@ h1 {
     width: 100%;
     transform: translateY(-100%);
   }
+  .sidebar-toggle {
+    display: block;
+  }
 
   .sidebar.active {
     transform: translateY(0);
