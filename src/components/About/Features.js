@@ -5,7 +5,7 @@ import "./Features.css";
 
 const Features = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 }); // You can adjust the duration as needed
+    AOS.init({ duration: 1000 }); 
   }, []);
 
   const featuresData = [

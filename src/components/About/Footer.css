@@ -49,13 +49,14 @@
   justify-content: center;
   padding: 10px;
   border-radius: 50%;
-  background-color: #e6dddd;
+  background-color: #34495e;
+  color: #3498db;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .social-icon:hover {
-  background-color: #34495e;
-  color: #3498db;
+  background-color: #1b1f22;
+  color: #0099ff;
 }
 
 .contact-form {
