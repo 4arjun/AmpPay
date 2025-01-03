@@ -1,14 +1,24 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: white;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#1A1F2C] text-white;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.glass-card {
+  @apply bg-card rounded-xl border border-white/10 backdrop-blur-sm;
 }
+
+.metric-value {
+  @apply text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+}
+
+.chart-container {
+  @apply h-[300px] w-full;
+}
+
+
+
