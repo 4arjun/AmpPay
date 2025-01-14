@@ -2,52 +2,36 @@ import { useEffect } from "react";
 import "./Card.css";
 import "aos/dist/aos.css";
 import AOS from "aos";
+
 const Card = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1500,
-      once: false,
-      offset: 200,
+      duration: 1200,
+      once: true,
     });
   }, []);
+
   return (
     <div className="card-container">
-      <div className="card left" data-aos="fade-right">
+      <div className="card left" data-aos="fade-up">
         <h3>Our Story</h3>
         <p>
-          AmpPay's journey is one marked by innovation and dedication. From the
+          AmpPay's journey is marked by innovation and dedication. From the
           inception of our idea to the implementation of cutting-edge solutions,
-          we've overcome challenges and reached key milestones. We are driven by
-          a passion to create a positive impact on energy consumption.
+          we've overcome challenges and reached key milestones. Driven by a
+          passion to create a positive impact, we aim to revolutionize energy
+          consumption.
         </p>
-        <div className="layers">
-          {Array.from({ length: 10 }, (_, index) => (
-            <div
-              key={index}
-              className="layer"
-              style={{ "--tz": `${index * -4}px` }}
-            ></div>
-          ))}
-        </div>
       </div>
 
-      <div className="card right" data-aos="fade-left">
+      <div className="card right" data-aos="fade-up" data-aos-delay="200">
         <h3>Our Vision</h3>
         <p>
           At AmpPay, we envision a future where energy efficiency is seamlessly
-          integrated into everyday life. Our commitment to ongoing improvement
-          and innovation fuels this vision. We're not just managing energy;
-          we're shaping a sustainable way of living.
+          integrated into everyday life. Our commitment to improvement and
+          innovation drives us to shape a sustainable way of living. Together,
+          we can build a better tomorrow.
         </p>
-        <div className="layers">
-          {Array.from({ length: 10 }, (_, index) => (
-            <div
-              key={index}
-              className="layer"
-              style={{ "--tz": `${index * -4}px` }}
-            ></div>
-          ))}
-        </div>
       </div>
     </div>
   );

@@ -12,12 +12,9 @@ const Vision = () => {
         if (entries[0].isIntersecting) {
           setVisibleHeader(true);
           setFadeInIntro(true);
-        } else {
-          setVisibleHeader(false);
-          setFadeInIntro(false);
         }
       },
-      { threshold: 0 }
+      { threshold: 0.3 }
     );
     observer.observe(sectionRef.current);
     return () => {
@@ -30,41 +27,27 @@ const Vision = () => {
       <div className="vision-inner">
         <h1
           className={`vision-title ${
-            visibleHeader ? "active_header" : "hidden"
+            visibleHeader ? "active_header2" : "hidden2"
           }`}
         >
-          About
+          About Us
         </h1>
-        <header className="vision-header">
-          <p
-            className={`vision-title ${
-              visibleHeader ? "active_header" : "hidden"
-            }`}
-          >
-            We’re AmpPay, Lighting the Way to Energy Efficiency
-          </p>
-        </header>
         <div className="vision-bottom">
           <div className={`vision-intro ${fadeInIntro ? "fade-in" : ""}`}>
             <p>
               Welcome to AmpPay – your gateway to empowered energy management.
-              Founded by a team passionate about sustainability, AmpPay offers a
-              comprehensive solution for tracking, managing, and optimizing
-              energy consumption. What sets us apart is our commitment to
-              innovation and our dedication to empowering users to make informed
-              decisions about their energy usage. At AmpPay, we value
-              sustainability, efficiency, and community, and our platform offers
-              real-time tracking, predictive insights, and personalized
-              recommendations to help you achieve your energy goals. Explore
-              AmpPay today and take control of your energy consumption like
-              never before.
+              Founded by a team passionate about sustainability, AmpPay offers
+              a comprehensive solution for tracking, managing, and optimizing
+              energy consumption. Our platform delivers real-time tracking,
+              predictive insights, and personalized recommendations to help you
+              achieve your energy goals. Explore AmpPay today and take control
+              of your energy like never before.
             </p>
           </div>
-          <hr />
           <div className="vision-img">
             <img
               src="https://adamsyy.github.io/tedx-2022/metamorphosis-removebg.png"
-              alt="Vision Image"
+              alt="Vision"
             />
           </div>
         </div>

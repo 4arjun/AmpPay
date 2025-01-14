@@ -13,6 +13,8 @@ import { LeaderboardCard } from "../components/LeaderboardCard";
 import { UserProfile } from "../components/UserProfile";
 import { IssueReporting } from "../components/IssueReporting";
 import { Alert, AlertTitle, AlertDescription } from "../components/ui/alert";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 const mockWeeklyData = [
   { date: "Mon", value: 240 },

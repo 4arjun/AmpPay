@@ -8,31 +8,29 @@ const Carousel1 = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.scrollTo({ top: "0", behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
     <div className="carousel-container">
       <div className="carousel-img">
-        <img src={img} alt="Carousel Background" />
+        <img src={img} alt="Innovative Business Solutions" />
       </div>
 
       <div className="carousel-content">
-        <h1 className="carousel-title">Welcome to AmpPay</h1>
+        <h1 className="carousel-title">Transform Your Future with AmpPay</h1>
         <p className="carousel-text">
-          Explore our services and find out how we can help you succeed.
+          Experience seamless solutions designed to drive success in every step of your journey.
         </p>
         <div className="carousel-buttons">
           <button
-            onClick={(event) => {
-              scrollSection("about1", event);
-            }}
+            onClick={(event) => scrollSection("about1", event)}
             className="btn-primary"
           >
-            Learn More
+            Discover More
           </button>
-          <button className="btn-secondary">Get Started</button>
+          <button className="btn-secondary">Start Today</button>
         </div>
       </div>
     </div>

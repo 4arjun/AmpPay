@@ -5,60 +5,55 @@ import "./Features.css";
 
 const Features = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 }); 
+    AOS.init({ duration: 1000 });
   }, []);
 
   const featuresData = [
     {
-      icon: "🚀",
+      icon: `<i class="fas fa-tachometer-alt"></i>`, 
       title: "Real-time Tracking",
       description: "Monitor your energy consumption instantly.",
     },
     {
-      icon: "📊",
+      icon: `<i class="fas fa-chart-line"></i>`, 
       title: "Predictive Billing",
       description:
         "Plan and adjust your energy habits with accurate bill predictions.",
     },
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 256 256">
-      <path
-       fill="green" d="M112.41 102.53a8 8 0 0 1 5.06-10.12l12-4A8 8 0 0 1 140 96v40a8 8 0 0 1-16 0v-28.9l-1.47.49a8 8 0 0 1-10.12-5.06M248 208a8 8 0 0 1-8 8H16a8 8 0 0 1 0-16h8v-96a16 16 0 0 1 16-16h40V56a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v72h40a16 16 0 0 1 16 16v56h8a8 8 0 0 1 8 8m-72-64v56h40v-56Zm-80 56h64V56H96Zm-56 0h40v-96H40Z" />
-      </svg>`,
+      icon: `<i class="fas fa-star"></i>`,
       title: "Efficiency Rankings",
       description:
         "Compare your energy efficiency with neighboring households.",
     },
     {
-      icon: "🌿",
+      icon: `<i class="fas fa-leaf"></i>`, 
       title: "Carbon Footprint Assessment",
       description:
         "Gain insights into the environmental impact of your energy use.",
     },
     {
-      icon: "🔔",
+      icon: `<i class="fas fa-bell"></i>`, 
       title: "Proactive Notification System",
       description:
         "Set limits and receive instant alerts, encouraging proactive energy-saving measures.",
     },
     {
-      icon: "🔒",
+      icon: `<i class="fas fa-lock"></i>`, 
       title: "Secure Data Management",
       description:
         "Ensure the security and privacy of your energy consumption data.",
     },
   ];
+  
+  
 
   return (
     <div className="features-container">
       <h2>Key Features</h2>
       <div className="features-list">
         {featuresData.map((feature, index) => (
-          <div
-            key={index}
-            className="feature"
-            data-aos="fade-up"
-          >
+          <div key={index} className="feature" data-aos="fade-up">
             <div
               className="feature-icon"
               dangerouslySetInnerHTML={{ __html: feature.icon }}

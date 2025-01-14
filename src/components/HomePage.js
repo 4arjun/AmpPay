@@ -10,7 +10,7 @@ const HomePage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -18,14 +18,12 @@ const HomePage = () => {
     <div className="main-container">
       {loading ? (
         <div id="loader">
-          <h1 className="loading-animation">
-            <span>🅰</span>
-            <span>🅼</span>
-            <span>🅿</span>
-            <span>🅿</span>
-            <span>🅰</span>
-            <span>🆈</span>
-          </h1>
+          <div className="loader-animation">
+            <div className="ring"></div>
+            <div className="ring"></div>
+            <div className="ring"></div>
+            <p className="loading-text">Loading...</p>
+          </div>
         </div>
       ) : (
         <div className="content-container">
