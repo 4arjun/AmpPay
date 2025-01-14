@@ -8,7 +8,7 @@ const Card = () => {
     AOS.init({
       duration: 1200,
       once: false,
-      offset: 150,
+      offset: 200,
     });
   }, []);
 

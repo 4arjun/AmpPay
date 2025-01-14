@@ -12,13 +12,13 @@ import {
 import "./Dash.css";
 
 const mockWeeklyData = [
-  { date: "Mon", value: 240 },
-  { date: "Tue", value: 300 },
-  { date: "Wed", value: 280 },
-  { date: "Thu", value: 260 },
-  { date: "Fri", value: 320 },
-  { date: "Sat", value: 290 },
-  { date: "Sun", value: 270 },
+  { date: "Mon", value: 56 },
+  { date: "Tue", value: 33 },
+  { date: "Wed", value: 66 },
+  { date: "Thu", value: 59 },
+  { date: "Fri", value: 62 },
+  { date: "Sat", value: 30 },
+  { date: "Sun", value: 45 },
 ];
 
 const MetricCard = ({ title, value, icon, trend }) => (
@@ -42,7 +42,7 @@ const MetricCard = ({ title, value, icon, trend }) => (
   </div>
 );
 
-const UsageChart = ({ data, title }) => (
+const UsageChart = ({ data, title, unit = "kWh" }) => (
   <div className="dashboard-chart-card">
     <h3>{title}</h3>
     <div className="dashboard-chart">
@@ -50,9 +50,12 @@ const UsageChart = ({ data, title }) => (
         <div
           key={index}
           className="dashboard-chart-bar"
-          style={{ height: `${point.value / 4}%` }}
+          style={{ height: `${point.value}%` }}
         >
-          <span>{point.value}</span>
+          <span className="bar-value">
+            {point.value} {unit}
+          </span>
+          <div className="bar-label">{point.date}</div>
         </div>
       ))}
     </div>
@@ -106,11 +109,14 @@ const IncidentReporting = ({ addIncident }) => {
 };
 
 const Dashboard = () => {
-  const [userName, setUserName] = useState("Arjun");
+  const [userName, setUserName] = useState("User");
   const [leaderboard, setLeaderboard] = useState([
-    { name: "John Doe", efficiency: 98 },
-    { name: "Jane Smith", efficiency: 95 },
+    { name: "Michael Brown", efficiency: 97 },
+    { name: "Christopher Wilson", efficiency: 96 },
+    { name: "Olivia Martin", efficiency: 94 },
     { name: "Alice Johnson", efficiency: 93 },
+    { name: "Emily Davis", efficiency: 92 },
+    { name: "Sophia Anderson", efficiency: 91 },
   ]);
   const [weeklyData, setWeeklyData] = useState(mockWeeklyData);
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -149,14 +155,14 @@ const Dashboard = () => {
         />
         <MetricCard
           title="Daily Usage"
-          value="28.5 kWh"
+          value="8.5 kWh"
           icon={<Battery />}
           trend={{ value: 3, isPositive: true }}
         />
         <MetricCard
           title="Monthly Bill"
-          value="$245.00"
-          icon={<DollarSign />}
+          value="₹4563.29"
+          icon={<span style={{ fontSize: "1.3em" }}>₹</span>}
         />
         <MetricCard
           title="Carbon Saved"
@@ -195,7 +201,7 @@ const Dashboard = () => {
             </li>
             <li>
               Solar panels can save the average household over{" "}
-              <strong>$20,000</strong> in energy costs over 20 years.
+              <strong>₹20,00,000</strong> in energy costs over 20 years.
             </li>
             <li>
               Microwaves use <strong>50%-65% less energy</strong> than
