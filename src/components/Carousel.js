@@ -1,7 +1,12 @@
 import "./Carousel.css";
 import img from "../images/pexels-ssteenbergenn-2966315.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Carousel1 = () => {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/login");
+  };
   const scrollSection = (id, event) => {
     event.preventDefault();
     const element = document.getElementById(id);
@@ -31,7 +36,9 @@ const Carousel1 = () => {
           >
             Discover More
           </button>
-          <button className="btn-secondary">Start Today</button>
+          <button className="btn-secondary" onClick={handleButtonClick}>
+            Start Today
+          </button>{" "}
         </div>
       </div>
     </div>

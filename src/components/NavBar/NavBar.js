@@ -1,7 +1,7 @@
 import "./NavBar.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../images/amppay.png"; // Use your provided logo path here
+import logo from "../../images/amppay.png";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,14 +58,8 @@ const NavBar = () => {
         >
           About
         </a>
-        <a
-          href="#footer"
-          onClick={(e) => scrollSection("footer", e)}
-          className="nav-link"
-        >
-          Contact
-        </a>
-        <Link to="/dashboard" className="nav-link" onClick={toggleMenu}>
+
+        <Link to="/login" className="nav-link" onClick={toggleMenu}>
           Dashboard
         </Link>
       </div>

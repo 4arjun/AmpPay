@@ -7,7 +7,8 @@ const Card = () => {
   useEffect(() => {
     AOS.init({
       duration: 1200,
-      once: true,
+      once: false,
+      offset: 150,
     });
   }, []);
 
