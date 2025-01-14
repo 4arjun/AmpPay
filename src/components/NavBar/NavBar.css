@@ -39,10 +39,10 @@
 }
 
 .nav-links a {
-  color: #ffffff;
+  color: #00293c; /* Soft light blue for a sleek initial appearance */
   text-decoration: none;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 .nav-link:hover {
