@@ -10,12 +10,12 @@ const Features = () => {
 
   const featuresData = [
     {
-      icon: `<i class="fas fa-tachometer-alt"></i>`, 
+      icon: `<i class="fas fa-tachometer-alt"></i>`,
       title: "Real-time Tracking",
       description: "Monitor your energy consumption instantly.",
     },
     {
-      icon: `<i class="fas fa-chart-line"></i>`, 
+      icon: `<i class="fas fa-chart-line"></i>`,
       title: "Predictive Billing",
       description:
         "Plan and adjust your energy habits with accurate bill predictions.",
@@ -27,26 +27,24 @@ const Features = () => {
         "Compare your energy efficiency with neighboring households.",
     },
     {
-      icon: `<i class="fas fa-leaf"></i>`, 
+      icon: `<i class="fas fa-leaf"></i>`,
       title: "Carbon Footprint Assessment",
       description:
         "Gain insights into the environmental impact of your energy use.",
     },
     {
-      icon: `<i class="fas fa-bell"></i>`, 
+      icon: `<i class="fas fa-bell"></i>`,
       title: "Proactive Notification System",
       description:
         "Set limits and receive instant alerts, encouraging proactive energy-saving measures.",
     },
     {
-      icon: `<i class="fas fa-lock"></i>`, 
+      icon: `<i class="fas fa-lock"></i>`,
       title: "Secure Data Management",
       description:
         "Ensure the security and privacy of your energy consumption data.",
     },
   ];
-  
-  
 
   return (
     <div className="features-container">

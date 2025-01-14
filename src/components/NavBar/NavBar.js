@@ -27,7 +27,8 @@ const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      const isVisible = prevScrollPos > currentScrollPos || currentScrollPos < 80;
+      const isVisible =
+        prevScrollPos > currentScrollPos || currentScrollPos < 80;
       setVisible(isVisible);
       setPrevScrollPos(currentScrollPos);
     };
@@ -43,13 +44,25 @@ const NavBar = () => {
         <img src={logo} alt="AmpPay Logo" />
       </div>
       <div className={`nav-links ${isOpen ? "open" : ""}`}>
-        <a href="#" onClick={(e) => scrollSection("home", e)} className="nav-link">
+        <a
+          href="#"
+          onClick={(e) => scrollSection("home", e)}
+          className="nav-link"
+        >
           Home
         </a>
-        <a href="#about1" onClick={(e) => scrollSection("about1", e)} className="nav-link">
+        <a
+          href="#about1"
+          onClick={(e) => scrollSection("about1", e)}
+          className="nav-link"
+        >
           About
         </a>
-        <a href="#footer" onClick={(e) => scrollSection("footer", e)} className="nav-link">
+        <a
+          href="#footer"
+          onClick={(e) => scrollSection("footer", e)}
+          className="nav-link"
+        >
           Contact
         </a>
         <Link to="/dashboard" className="nav-link" onClick={toggleMenu}>

@@ -36,8 +36,8 @@ const Vision = () => {
           <div className={`vision-intro ${fadeInIntro ? "fade-in" : ""}`}>
             <p>
               Welcome to AmpPay – your gateway to empowered energy management.
-              Founded by a team passionate about sustainability, AmpPay offers
-              a comprehensive solution for tracking, managing, and optimizing
+              Founded by a team passionate about sustainability, AmpPay offers a
+              comprehensive solution for tracking, managing, and optimizing
               energy consumption. Our platform delivers real-time tracking,
               predictive insights, and personalized recommendations to help you
               achieve your energy goals. Explore AmpPay today and take control

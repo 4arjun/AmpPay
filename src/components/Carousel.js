@@ -21,7 +21,8 @@ const Carousel1 = () => {
       <div className="carousel-content">
         <h1 className="carousel-title">Transform Your Future with AmpPay</h1>
         <p className="carousel-text">
-          Experience seamless solutions designed to drive success in every step of your journey.
+          Experience seamless solutions designed to drive success in every step
+          of your journey.
         </p>
         <div className="carousel-buttons">
           <button

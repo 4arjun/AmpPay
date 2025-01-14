@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Bolt,
   Leaf,
@@ -6,15 +6,10 @@ import {
   Battery,
   BarChart3,
   AlertTriangle,
+  Sun,
+  Moon,
 } from "lucide-react";
-import { MetricCard } from "../components/MetricCard";
-import { UsageChart } from "../components/UsageChart";
-import { LeaderboardCard } from "../components/LeaderboardCard";
-import { UserProfile } from "../components/UserProfile";
-import { IssueReporting } from "../components/IssueReporting";
-import { Alert, AlertTitle, AlertDescription } from "../components/ui/alert";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-
+import "./Dash.css";
 
 const mockWeeklyData = [
   { date: "Mon", value: 240 },
@@ -26,44 +21,126 @@ const mockWeeklyData = [
   { date: "Sun", value: 270 },
 ];
 
-const Index = () => {
+const MetricCard = ({ title, value, icon, trend }) => (
+  <div className="dashboard-metric-card">
+    <div className="dashboard-metric-header">
+      {icon}
+      <h3>{title}</h3>
+    </div>
+    <p className="dashboard-metric-value">{value}</p>
+    {trend && (
+      <p
+        className={`dashboard-metric-trend ${
+          trend.isPositive
+            ? "dashboard-trend-positive"
+            : "dashboard-trend-negative"
+        }`}
+      >
+        {trend.isPositive ? "▲" : "▼"} {trend.value}%
+      </p>
+    )}
+  </div>
+);
+
+const UsageChart = ({ data, title }) => (
+  <div className="dashboard-chart-card">
+    <h3>{title}</h3>
+    <div className="dashboard-chart">
+      {data.map((point, index) => (
+        <div
+          key={index}
+          className="dashboard-chart-bar"
+          style={{ height: `${point.value / 4}%` }}
+        >
+          <span>{point.value}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const LeaderboardCard = ({ leaderboard }) => (
+  <div className="dashboard-leaderboard-card">
+    <h3>Efficiency Leaderboard</h3>
+    <ul>
+      {leaderboard.map((user, index) => (
+        <li key={index}>
+          <span>{user.name}</span>
+          <span>{user.efficiency}%</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const IncidentReporting = ({ addIncident }) => {
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+
+  const handleSubmit = () => {
+    if (description && location) {
+      addIncident({ description, location });
+      setDescription("");
+      setLocation("");
+    }
+  };
+
   return (
-    <div className="container py-8 animate-fade-in">
-      <div className="flex justify-end mb-6">
-        <UserProfile />
-      </div>
+    <div className="dashboard-incident-card">
+      <h3>Report an Incident</h3>
+      <input
+        type="text"
+        placeholder="Describe the issue"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Location"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+      />
+      <button onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+};
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2">
-          <IssueReporting />
-        </div>
-        <div className="glass-card bg-gradient-to-br from-[#1A1F2C] via-[#2D3748] to-[#1A1F2C] p-6 rounded-lg shadow-md">
-          <div className="flex items-center gap-2 mb-4">
-            <AlertTriangle className="text-red-500 w-6 h-6" />
-            <h2 className="text-xl font-semibold text-gray-200">
-              Active Warnings
-            </h2>
-          </div>
-          <div className="space-y-4">
-            <Alert variant="destructive" className="bg-red-100 border border-red-200 text-red-800 p-4 rounded-lg">
-              <AlertTitle className="font-bold">Power Line Damage Detected</AlertTitle>
-              <AlertDescription className="text-sm">
-                Downed power lines reported on Oak Street. Please avoid the
-                area and maintain a safe distance of at least 30 feet.
-              </AlertDescription>
-            </Alert>
-            <Alert className="bg-yellow-100 border border-yellow-200 text-yellow-800 p-4 rounded-lg">
-              <AlertTitle className="font-bold">Scheduled Maintenance</AlertTitle>
-              <AlertDescription className="text-sm">
-                Planned outage on March 15th, 2-4 PM for system upgrades. Please
-                prepare accordingly.
-              </AlertDescription>
-            </Alert>
-          </div>
-        </div>
-      </div>
+const Dashboard = () => {
+  const [userName, setUserName] = useState("Arjun");
+  const [leaderboard, setLeaderboard] = useState([
+    { name: "John Doe", efficiency: 98 },
+    { name: "Jane Smith", efficiency: 95 },
+    { name: "Alice Johnson", efficiency: 93 },
+  ]);
+  const [weeklyData, setWeeklyData] = useState(mockWeeklyData);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [incidents, setIncidents] = useState([
+    { description: "Broken power line", location: "Oak Street" },
+  ]);
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+  const addIncident = (incident) => {
+    setIncidents((prev) => [...prev, incident]);
+  };
+  useEffect(() => {
+    document.body.className = isDarkMode ? "dark-mode" : "light-mode";
+  }, [isDarkMode]);
+
+  return (
+    <div
+      className={`dashboard-container ${
+        isDarkMode ? "dark-mode" : "light-mode"
+      }`}
+    >
+      <header className="dashboard-header">
+        <h1>Welcome, {userName}</h1>
+        <div className="dashboard-theme-toggle">
+          <button onClick={() => setIsDarkMode(!isDarkMode)}>
+            {isDarkMode ? <Sun /> : <Moon />}
+          </button>
+        </div>
+      </header>
+
+      <div className="dashboard-metrics-row">
         <MetricCard
           title="Current Power"
           value="4.2 kW"
@@ -89,33 +166,50 @@ const Index = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2">
-          <UsageChart data={mockWeeklyData} title="Weekly Energy Consumption" />
-        </div>
-        <LeaderboardCard />
+      <div className="dashboard-row">
+        <UsageChart data={weeklyData} title="Weekly Energy Consumption" />
+        <LeaderboardCard leaderboard={leaderboard} />
       </div>
 
-      <div className="glass-card bg-gradient-to-br from-[#1A1F2C] via-[#2D3748] to-[#1A1F2C] p-6 rounded-lg shadow-md">
-        <div className="flex items-center gap-2 mb-6">
-          <BarChart3 className="text-primary w-6 h-6" />
-          <h2 className="text-xl font-semibold text-gray-200">
-            Predicted Usage
-          </h2>
+      <div className="dashboard-lower-row">
+        <IncidentReporting addIncident={addIncident} />
+        <div className="dashboard-warnings-card">
+          <h3>Reported Incidents</h3>
+          {incidents.map((incident, index) => (
+            <div key={index} className="dashboard-alert">
+              <p>
+                <strong>Issue:</strong> {incident.description}
+              </p>
+              <p>
+                <strong>Location:</strong> {incident.location}
+              </p>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>
-            <p className="text-gray-400">Estimated Next Bill</p>
-            <p className="metric-value text-3xl">$268.50</p>
-          </div>
-          <div className="text-sm text-gray-400">
-            <p>Based on current usage patterns</p>
-            <p>Bill date: May 15, 2024</p>
-          </div>
+        <div className="dashboard-tips-card">
+          <h4>Did You Know?</h4>
+          <ul>
+            <li>
+              Standby appliances can account for up to <strong>10%</strong> of
+              household energy use.
+            </li>
+            <li>
+              Solar panels can save the average household over{" "}
+              <strong>$20,000</strong> in energy costs over 20 years.
+            </li>
+            <li>
+              Microwaves use <strong>50%-65% less energy</strong> than
+              conventional ovens for reheating and cooking small meals.
+            </li>
+            <li>
+              Cranking up your AC doesn’t cool a room faster but increases
+              energy usage unnecessarily.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default Dashboard;

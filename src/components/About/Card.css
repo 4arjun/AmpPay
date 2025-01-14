@@ -5,12 +5,12 @@
   align-items: stretch;
   gap: 40px;
   padding: 50px 20px;
-  background-color: #1d1d1d; 
+  background-color: #1d1d1d;
   color: #ffffff;
 }
 
 .card {
-  background: linear-gradient(145deg, #2a2a2a, #1a1a1a); 
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   padding: 30px;
@@ -21,7 +21,7 @@
 }
 
 .card:hover {
-  transform: translateY(-10px); 
+  transform: translateY(-10px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -29,7 +29,7 @@
   font-size: 1.8rem;
   margin-bottom: 20px;
   font-weight: 600;
-  color: #ff7f50; 
+  color: #ff7f50;
 }
 
 .card p {
@@ -57,7 +57,6 @@
     font-size: 0.9rem;
   }
 }
-
 
 .card:hover {
   transform: translateY(-10px);
