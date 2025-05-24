@@ -24,10 +24,6 @@ const Login = () => {
     }, 1500);
   };
 
-  const handleDemoClick = () => {
-    alert("This is a demo of the login functionality.");
-  };
-
   return (
     <div className="login-container">
       {isLoading ? (
@@ -77,10 +73,6 @@ const Login = () => {
               <button type="submit" className="login-btn">
                 Login
               </button>
-              <Link to="/dashboard" className="demo-btn">
-                Demo
-              </Link>
-
               {error && <p className="error-message">{error}</p>}
             </form>
           </div>
