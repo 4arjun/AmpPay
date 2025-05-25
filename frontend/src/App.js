@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./components/Index.js";
 import Login from "./components/Login.jsx";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </div>
   );
 }
