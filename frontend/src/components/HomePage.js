@@ -88,7 +88,9 @@ const Carousel1 = ({ setIsDemoOpen }) => {
           Your all-in-one payment solution for seamless transactions
         </p>
         <div className="carousel-buttons">
-          <button className="btn-primary">Get Started</button>
+          <Link to="/login" className="btn-primary">
+          Get Started
+        </Link>
           <button className="btn-secondary" onClick={() => navigate("/dashboard")}>
             Try Demo
           </button>
