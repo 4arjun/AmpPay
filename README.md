@@ -61,11 +61,11 @@ AmpPay bridges this gap by providing an all-encompassing platform that combines 
 
 ## Objectives
 
-1. Facilitate cost reduction in electricity consumption
-2. Revolutionize energy management through detailed data insights
-3. Provide accessible tools for efficiency awareness and environmental impact assessment
-4. Develop an integrated platform for comprehensive energy management in residential and commercial settings
-5. Foster a societal shift towards conscientious energy utilization
+1. Facilitate cost reduction in electricity consumption.
+2. Revolutionize energy management through detailed data insights.
+3. Provide accessible tools for efficiency awareness and environmental impact assessment.
+4. Develop an integrated platform for comprehensive energy management in residential and commercial settings.
+5. Foster a societal shift towards conscientious energy utilization.
 
 ## Technical Specifications
 
