@@ -274,15 +274,21 @@ const Footer = () => {
 };
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    // Check localStorage for the flag
+    return localStorage.getItem('hasSeenLoader') !== 'true';
+  });
   const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (loading) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+        localStorage.setItem('hasSeenLoader', 'true');
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   return (
     <div className="main-container">
